@@ -1,0 +1,17 @@
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-4">Danh Mục Sản Phẩm</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Từ những món đồ trang trí tinh tế đến các vật dụng sinh hoạt hàng ngày,
+                tất cả đều được chế tác từ nghệ thuật sơn mài truyền thống
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @for (category of categories(); track category.id) {
+            <app-category-card [category]="category" />
+            }
+        </div>
+    </div>
+</section>

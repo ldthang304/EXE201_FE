@@ -1,0 +1,46 @@
+<div class="bg-white rounded-xl shadow-md overflow-hidden group hover:shadow-xl transition-all">
+    <div class="relative">
+        <img [src]="product.image" [alt]="product.name"
+            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+        <div class="absolute top-4 left-4">
+            @if (product.originalPrice) {
+            <span class="bg-red-500 text-white text-sm px-2 py-1 rounded">
+                -{{Math.round((1 - product.price / product.originalPrice!) * 100)}}%
+            </span>
+            }
+        </div>
+        <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+            <button class="bg-white text-red-500 p-2 rounded-full hover:bg-red-500 hover:text-white"
+                (click)="addToWishlist()">
+                ❤️
+            </button>
+        </div>
+    </div>
+
+    <div class="p-6">
+        <div class="flex items-center mb-2">
+            @for (star of [1,2,3,4,5]; track star) {
+            <span [class]="star <= product.rating ? 'text-yellow-400' : 'text-gray-300'">⭐</span>
+            }
+            <span class="text-gray-500 text-sm ml-2">({{product.reviews}})</span>
+        </div>
+
+        <h4 class="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">{{product.name}}</h4>
+        <p class="text-gray-500 text-sm mb-3">{{product.category}}</p>
+
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="text-xl font-bold text-red-600">{{cartService.formatPrice(product.price)}}</span>
+                @if (product.originalPrice) {
+                <span
+                    class="text-sm text-gray-400 line-through">{{cartService.formatPrice(product.originalPrice)}}</span>
+                }
+            </div>
+            <button
+                class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                (click)="addToCart()">
+                Thêm vào giỏ
+            </button>
+        </div>
+    </div>
+</div>
