@@ -8,10 +8,11 @@ import { FeaturedProductsComponent } from './components/featured-products/featur
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CartSidebarComponent } from './components/cart-sidebar/cart-sidebar.component';
+import { HomeComponent } from "./views/home/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, HeaderComponent, HeroComponent, CategoriesComponent, FeaturedProductsComponent, NewsletterComponent, FooterComponent, CartSidebarComponent],
+  imports: [RouterOutlet, CartSidebarComponent, FooterComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
