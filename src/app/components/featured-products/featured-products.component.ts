@@ -18,7 +18,6 @@ export class FeaturedProductsComponent {
       image: '/api/placeholder/300/300',
       category: 'Bình hoa',
       rating: 5,
-      reviews: 24
     },
     {
       id: 2,
@@ -27,7 +26,6 @@ export class FeaturedProductsComponent {
       image: '/api/placeholder/300/300',
       category: 'Đĩa trang trí',
       rating: 4,
-      reviews: 18
     },
     {
       id: 3,
@@ -37,7 +35,6 @@ export class FeaturedProductsComponent {
       image: '/api/placeholder/300/300',
       category: 'Hộp trang sức',
       rating: 5,
-      reviews: 32
     },
     {
       id: 4,
@@ -46,7 +43,6 @@ export class FeaturedProductsComponent {
       image: '/api/placeholder/300/300',
       category: 'Tranh sơn mài',
       rating: 5,
-      reviews: 15
     }
   ]);
 }
