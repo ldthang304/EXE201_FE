@@ -41,18 +41,22 @@
                     <span
                         class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{{cartService.wishlistCount()}}</span>
                 </button>
-                <button class="relative" (click)="cartService.toggleCart()">
-                    <span class="text-2xl">🛒</span>
-                    <span
-                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{{cartService.cartCount()}}</span>
-                </button>
+                <div class="relative">
+                    <button class="relative cart-button" (click)="goToCart()">
+                        <span class="text-2xl">🛒</span>
+                        @if (cartService.cartCount() > 0) {
+                            <span
+                                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">{{cartService.cartCount()}}</span>
+                        }
+                    </button>
+                </div>
             </div>
         </div>
 
         <!-- Navigation -->
         <nav class="py-3 border-t">
             <ul class="flex space-x-8 text-gray-700">
-                <li><a href="#" class="hover:text-red-600 font-medium">Trang chủ</a></li>
+                <li><a routerLink="Trang-chu" class="hover:text-red-600 font-medium">Trang chủ</a></li>
                 <li class="relative group">
                     <a routerLink="Danh-muc-san-pham" class="hover:text-red-600 flex items-center">
                         Danh mục sản phẩm <span class="ml-1">▼</span>
@@ -66,6 +70,7 @@
                         <a href="#" class="block px-4 py-2 hover:bg-gray-100">Đồ gia dụng</a>
                     </div>
                 </li>
+                <li><a routerLink="Gio-hang" class="hover:text-red-600">Giỏ hàng</a></li>
                 <li><a href="#" class="hover:text-red-600">Về chúng tôi</a></li>
                 <li><a href="#" class="hover:text-red-600">Blog</a></li>
                 <li><a href="#" class="hover:text-red-600">Liên hệ</a></li>

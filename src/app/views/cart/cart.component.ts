@@ -1,15 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { CartService, CartItem } from '../../services/cart.service';
 
 @Component({
-  selector: 'app-cart-sidebar',
-  imports: [CommonModule],
-  templateUrl: './cart-sidebar.component.html',
-  styleUrl: './cart-sidebar.component.css'
+  selector: 'app-cart',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.css'
 })
-export class CartSidebarComponent {
+export class CartComponent {
   cartService = inject(CartService);
+  router = inject(Router);
 
   // Computed properties
   get cartItems() {
@@ -39,5 +41,14 @@ export class CartSidebarComponent {
 
   clearCart() {
     this.cartService.clearCart();
+  }
+
+  continueShopping() {
+    this.router.navigate(['/']);
+  }
+
+  proceedToCheckout() {
+    // TODO: Implement checkout logic
+    console.log('Proceeding to checkout...');
   }
 }

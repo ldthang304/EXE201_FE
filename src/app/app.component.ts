@@ -7,12 +7,11 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { FeaturedProductsComponent } from './components/featured-products/featured-products.component';
 import { NewsletterComponent } from './components/newsletter/newsletter.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CartSidebarComponent } from './components/cart-sidebar/cart-sidebar.component';
 import { HomeComponent } from "./views/home/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CartSidebarComponent, FooterComponent, HeaderComponent],
+  imports: [RouterOutlet, FooterComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

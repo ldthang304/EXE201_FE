@@ -1,17 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 import { CartService, CartItem } from '../../services/cart.service';
+import { RouterConstant } from '../../constants/routerConstants';
 
 @Component({
-  selector: 'app-cart-sidebar',
-  imports: [CommonModule],
-  templateUrl: './cart-sidebar.component.html',
-  styleUrl: './cart-sidebar.component.css'
+  selector: 'app-mini-cart',
+  imports: [CommonModule, RouterModule],
+  templateUrl: './mini-cart.component.html',
+  styleUrl: './mini-cart.component.css'
 })
-export class CartSidebarComponent {
+export class MiniCartComponent {
   cartService = inject(CartService);
+  router = inject(Router);
 
-  // Computed properties
   get cartItems() {
     return this.cartService.cartItemsList();
   }
@@ -24,20 +26,15 @@ export class CartSidebarComponent {
     return this.cartService.cartCount();
   }
 
-  // Methods
-  updateQuantity(item: CartItem, newQuantity: number) {
-    this.cartService.updateQuantity(item.product.id, newQuantity);
-  }
-
   removeItem(item: CartItem) {
     this.cartService.removeFromCart(item.product.id);
   }
 
-  addToWishlist(item: CartItem) {
-    this.cartService.addToWishlist(item.product);
+  updateQuantity(item: CartItem, newQuantity: number) {
+    this.cartService.updateQuantity(item.product.id, newQuantity);
   }
 
-  clearCart() {
-    this.cartService.clearCart();
+  goToCart() {
+    this.router.navigate([RouterConstant.cart]);
   }
 }
