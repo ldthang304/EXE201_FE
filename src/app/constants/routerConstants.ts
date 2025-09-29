@@ -3,5 +3,6 @@ export const RouterConstant = {
     register: "Dang-ky",
     home: "Trang-chu",
     productCategory: "Danh-muc-san-pham",
+    detailProduct: "Danh-muc-san-pham/:id",
     cart: "Gio-hang"
 };
