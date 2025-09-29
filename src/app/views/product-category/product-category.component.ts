@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product.interface';
 import { FilterGroup } from '../../interfaces/filterGroup.interface';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,9 @@ import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.comp
 import { FilterSidebarComponent } from "../../components/filter-sidebar/filter-sidebar.component";
 import { ProductSortComponent } from "../../components/product-sort/product-sort.component";
 import { ProductGridComponent } from "../../components/product-grid/product-grid.component";
+import { ProductService } from '../../../services/Uri/projectService/productService';
+import { Router } from '@angular/router';
+import { RouterConstant } from '../../constants/routerConstants';
 
 @Component({
   selector: 'app-product-category',
@@ -14,6 +17,10 @@ import { ProductGridComponent } from "../../components/product-grid/product-grid
   styleUrl: './product-category.component.css'
 })
 export class ProductCategoryComponent implements OnInit {
+  
+  productService = inject(ProductService)
+  router = inject(Router)
+
   products: Product[] = [];
   filteredProducts: Product[] = [];
   totalProducts = 0;
@@ -124,7 +131,7 @@ export class ProductCategoryComponent implements OnInit {
 
   onProductSelected(product: Product) {
     // Navigate to product detail page
-    console.log('Navigate to product:', product.id);
+    this.router.navigate([RouterConstant.productCategory, product.id]);
   }
 
   onAddToCart(product: Product) {
