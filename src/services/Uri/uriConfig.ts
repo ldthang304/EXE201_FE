@@ -1,9 +1,12 @@
 export const baseUri = {
-    base: 'https://localhost:7269/',
+    base: 'http://localhost:8080/',
 }
 
 export const UriConfig = {
-    Products: baseUri.base + 'api/Products',
-    Categories: baseUri.base + 'api/Categories'
+    Products: baseUri.base + 'api/products',
+    Categories: baseUri.base + 'api/products/types',
+    Auth: baseUri.base + 'auth',
+    Baskets: baseUri.base + 'api/baskets',
+    Checkout: baseUri.base + 'api/checkout'
 }
 

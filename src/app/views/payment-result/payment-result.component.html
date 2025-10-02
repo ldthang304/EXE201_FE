@@ -1,0 +1,103 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center">
+      <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
+      <h2 class="text-xl font-semibold text-gray-900">Đang xử lý kết quả thanh toán...</h2>
+      <p class="text-gray-600 mt-2">Vui lòng chờ trong giây lát</p>
+    </div>
+
+    <!-- Success State -->
+    <div *ngIf="!isLoading && isSuccess" class="text-center">
+      <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-6">
+        <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Thanh toán thành công!</h2>
+      <p class="text-gray-600 mb-6">{{message}}</p>
+      
+      <!-- Order Details -->
+      <div class="bg-white rounded-lg shadow p-6 mb-6 text-left">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Thông tin đơn hàng</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between" *ngIf="orderCode">
+            <span class="text-gray-600">Mã đơn hàng:</span>
+            <span class="font-medium text-gray-900">{{orderCode}}</span>
+          </div>
+          <div class="flex justify-between" *ngIf="paymentCode">
+            <span class="text-gray-600">Mã thanh toán:</span>
+            <span class="font-medium text-gray-900">{{paymentCode}}</span>
+          </div>
+          <div class="flex justify-between" *ngIf="transactionNo">
+            <span class="text-gray-600">Mã giao dịch VNPay:</span>
+            <span class="font-medium text-gray-900">{{transactionNo}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-3">
+        <button
+          (click)="goToOrders()"
+          class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+          Xem đơn hàng của tôi
+        </button>
+        <button
+          (click)="goToHome()"
+          class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+          Tiếp tục mua sắm
+        </button>
+      </div>
+    </div>
+
+    <!-- Failure State -->
+    <div *ngIf="!isLoading && !isSuccess" class="text-center">
+      <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
+        <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </div>
+      
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Thanh toán thất bại!</h2>
+      <p class="text-gray-600 mb-6">{{message}}</p>
+      
+      <!-- Error Details -->
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-left" *ngIf="paymentCode">
+        <h3 class="text-sm font-semibold text-red-800 mb-2">Chi tiết lỗi</h3>
+        <div class="text-sm text-red-700">
+          <div class="flex justify-between">
+            <span>Mã thanh toán:</span>
+            <span>{{paymentCode}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-3">
+        <button
+          (click)="tryAgain()"
+          class="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+          Thử lại
+        </button>
+        <button
+          (click)="goToHome()"
+          class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-50 transition-colors">
+          Về trang chủ
+        </button>
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="text-center pt-6 border-t border-gray-200" *ngIf="!isLoading">
+      <p class="text-sm text-gray-500">
+        Cần hỗ trợ? 
+        <a href="mailto:support@sonmaiheritage.com" class="text-blue-600 hover:text-blue-500">
+          Liên hệ với chúng tôi
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

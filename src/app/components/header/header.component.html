@@ -7,8 +7,30 @@
                 <span>✉️ Email: ,,,</span>
             </div>
             <div class="flex items-center space-x-4">
-                <a href="#" class="hover:text-red-600">Đăng nhập</a>
-                <a href="#" class="hover:text-red-600">Đăng ký</a>
+                <!-- Admin Link (only show for admin users) -->
+                <a *ngIf="isAdmin()" routerLink="/admin" class="hover:text-red-600 font-medium text-blue-600">
+                    🔧 Quản trị
+                </a>
+                
+                <!-- User Menu (when logged in) -->
+                <div *ngIf="isLoggedIn()" class="flex items-center space-x-3">
+                    <a routerLink="/orders" class="hover:text-red-600 text-sm">
+                        📋 Đơn hàng của tôi
+                    </a>
+                    <span class="text-sm text-gray-700">
+                        Xin chào, <strong>{{ getCurrentUser()?.firstName || getCurrentUser()?.username }}</strong>
+                    </span>
+                    <button (click)="logout()" class="hover:text-red-600 text-sm">
+                        Đăng xuất
+                    </button>
+                </div>
+                
+                <!-- Login/Register (when not logged in) -->
+                <div *ngIf="!isLoggedIn()" class="flex items-center space-x-3">
+                    <button (click)="goToLogin()" class="hover:text-red-600">Đăng nhập</button>
+                    <a href="#" class="hover:text-red-600">Đăng ký</a>
+                </div>
+                
                 <select class="text-xs border rounded px-2 py-1">
                     <option>Tiếng Việt</option>
                     <option>English</option>

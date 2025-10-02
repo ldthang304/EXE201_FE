@@ -48,7 +48,10 @@ export class CartComponent {
   }
 
   proceedToCheckout() {
-    // TODO: Implement checkout logic
-    console.log('Proceeding to checkout...');
+    if (this.cartItems.length === 0) {
+      alert('Giỏ hàng của bạn đang trống');
+      return;
+    }
+    this.router.navigate(['/checkout']);
   }
 }
